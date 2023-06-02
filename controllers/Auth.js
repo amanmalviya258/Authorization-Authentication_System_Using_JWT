@@ -62,7 +62,7 @@ exports.login = async (req, res) => {
         message: "fill the details correctly",
       });
     }
-    let user = await User.findOne({ email });
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({
         success: false,
@@ -77,25 +77,20 @@ exports.login = async (req, res) => {
     };
 
     if (await bcrypt.compare(password, user.password)) {
-      let token = jwt.sign(payload, process.env.JWT_SECRET, {
+      const token = jwt.sign(payload, process.env.JWT_SECRET, {
         expiresIn: "2h",
       });
 
-      console.log(token);
-
      //  user = user.toObject();
      password = undefined;
-     console.log(password);
-     console.log(user.password);
-      user.token = user;
-
+    //   console.log(user.password);
+     user.token = user;
       const options = {
-        expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
+        expires: new Date(Date.now() +30*1000),
         httpOnly: true,
       };
-      // res.JSON.stringify(user)
-      res.cookie("Cookie", token, options);
-      res.status(200).json({
+      
+      res.cookie("token", token, options).status(200).json({
         success: true,
         message: "user logged in successfully",
         token, user,

@@ -1,0 +1,2 @@
+# Authorization-Authentication_System_Using_JWT
+Developed a secure web application leveraging JSON Web Tokens (JWT) for authentication and authorization. Implemented user registration, authentication, and role-based access control (RBAC). Integrated token generation, verification, and expiration, ensuring data integrity and user privacy. Improved security and user experience by implementing stateless and scalable authentication mechanisms.

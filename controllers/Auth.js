@@ -18,7 +18,7 @@ exports.signup = async (req, res) => {
         message: "user already exist",
       });
     }
-    //secure passoword
+    //secure password
     let hashedPassword;
     try {
       hashedPassword = await bcrypt.hash(password, 10);
